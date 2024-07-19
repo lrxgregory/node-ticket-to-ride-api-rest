@@ -38,5 +38,7 @@ npm install body-parser --save
 Install ORM sequelize (Folder src\models get models for sequelize) 
 npm install sequelize --save
 
-Installer mariadb
+Install mariadb
 npm install mariadb --save
+
+Create mocks + models + file sequelize to init database 
