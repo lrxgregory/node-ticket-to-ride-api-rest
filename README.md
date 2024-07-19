@@ -52,3 +52,6 @@ npm install bcrypt --save
 
 Create file .env to stock sensitive datas
 npm install dotenv --save
+
+Authentification with JWToken => install jsonwebtoken to generate token
+npm install jsonwebtoken --save

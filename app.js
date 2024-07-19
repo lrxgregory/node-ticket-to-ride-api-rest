@@ -26,7 +26,7 @@ require('./src/routes/updateDestinations')(app);
 require('./src/routes/updateRoads')(app);
 require('./src/routes/deleteDestination')(app);
 require('./src/routes/deleteRoad')(app);
-// require('./src/routes/login')(app);
+require('./src/routes/login')(app);
 
 app.use(({ res }) => {
     const message = "Unable to find requested resource";

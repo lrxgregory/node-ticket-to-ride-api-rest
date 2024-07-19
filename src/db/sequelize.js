@@ -3,10 +3,10 @@ require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 const DestinationEuropeModel = require('../models/destinationsEurope');
 const RoadEuropeModel = require('../models/roadsEurope');
+const UserModel = require('../models/user');
 const destinationsEurope = require('./mock-ticket-to-ride-europe-destinations');
 const roadsEurope = require('./mock-ticket-to-ride-europe-roads');
-const bcrypt = require('bcrypt'); // Assurez-vous d'inclure bcrypt pour le hashage des mots de passe
-const userModel = require('../models/user'); // Importez votre modèle utilisateur
+const bcrypt = require('bcrypt');
 
 // Configurer Sequelize avec les variables d'environnement
 const sequelize = new Sequelize(
@@ -25,7 +25,7 @@ const sequelize = new Sequelize(
 
 const DestinationEurope = DestinationEuropeModel(sequelize, DataTypes);
 const RoadEurope = RoadEuropeModel(sequelize, DataTypes);
-const User = userModel(sequelize, DataTypes);
+const User = UserModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({ force: true }).then(_ => {
@@ -65,5 +65,5 @@ const initDb = () => {
 };
 
 module.exports = {
-    initDb, DestinationEurope, RoadEurope
+    initDb, DestinationEurope, RoadEurope, User
 };

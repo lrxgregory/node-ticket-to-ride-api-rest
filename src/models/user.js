@@ -1,4 +1,3 @@
-/* Authentification : Créer un modèle User avec Sequelize */
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('User', {
         id: {
@@ -9,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING,
             unique: {
-                msg: 'Le nom est déjà pris'
+                msg: 'This name is already taken'
             }
         },
         password: {
