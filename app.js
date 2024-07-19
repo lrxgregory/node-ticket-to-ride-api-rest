@@ -17,6 +17,17 @@ app
 //Init Database
 sequelize.initDb();
 
+//Routes
+require('./src/routes/createDestination')(app);
+require('./src/routes/createRoads')(app);
+require('./src/routes/getDestinations')(app);
+require('./src/routes/getRoads')(app);
+require('./src/routes/updateDestinations')(app);
+require('./src/routes/updateRoads')(app);
+require('./src/routes/deleteDestination')(app);
+require('./src/routes/deleteRoad')(app);
+// require('./src/routes/login')(app);
+
 app.use(({ res }) => {
     const message = "Unable to find requested resource";
     res.status(400).json({ message });
