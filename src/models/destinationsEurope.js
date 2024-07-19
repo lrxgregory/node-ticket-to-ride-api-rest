@@ -17,13 +17,17 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        map: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         isLongDestination: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
+        map: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    },{
+        defaultScope: {
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } // Exclude these attributes by default
+        }
     });
 }

@@ -24,5 +24,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         }
+    },{
+        defaultScope: {
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } // Exclude these attributes by default
+        }
     });
 }
