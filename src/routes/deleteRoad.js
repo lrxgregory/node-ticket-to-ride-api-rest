@@ -1,7 +1,8 @@
 const { RoadEurope } = require('../db/sequelize');
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-    app.delete('/api/roads/:id', (req, res) => {
+    app.delete('/api/roads/:id', auth, (req, res) => {
         RoadEurope.scope(null).findByPk(req.params.id)
         .then(road => {
             if (road === null) {

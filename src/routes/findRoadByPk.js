@@ -1,7 +1,8 @@
 const { Road } = require('../db/sequelize')
+const auth = require('../auth/auth')
 
 module.exports = (app) => {
-    app.get('/api/destinations/:id', (req, res) => {
+    app.get('/api/destinations/:id', auth, (req, res) => {
         Road.findByPk(req.params.id)
             .then(road => {
                 if (road === null) {
