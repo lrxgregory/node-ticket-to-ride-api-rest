@@ -42,3 +42,13 @@ Install mariadb
 npm install mariadb --save
 
 Create mocks + models + file sequelize to init database 
+
+Create routes for CRUD
+
+Create a model User + init user on sequelize
+
+Install bcrypt for hashing password
+npm install bcrypt --save
+
+Create file .env to stock sensitive datas
+npm install dotenv --save
