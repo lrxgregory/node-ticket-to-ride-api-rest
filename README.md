@@ -25,3 +25,12 @@ const port = 3000
 app.get('/', (req, res) => res.send('Hello express JS'))
 
 app.listen(port, () => console.log(`App start on port ${port}`))
+
+Install middle morgan to manage request HTTP
+npm install morgan --save-dev
+
+Install middleware to manage favicon
+npm install serve-favicon --save
+
+Install middleware to parse strings to JSON
+npm install body-parser --save

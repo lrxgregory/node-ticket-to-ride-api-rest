@@ -1,0 +1,20 @@
+{
+  "name": "ticket-to-ride-api-rest",
+  "version": "1.0.0",
+  "description": "An API REST with score of the board game Ticket To Ride",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Gregory Leroux",
+  "license": "ISC",
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "serve-favicon": "^2.5.0"
+  }
+}
