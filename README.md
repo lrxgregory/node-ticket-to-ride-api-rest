@@ -34,3 +34,9 @@ npm install serve-favicon --save
 
 Install middleware to parse strings to JSON
 npm install body-parser --save
+
+Install ORM sequelize (Folder src\models get models for sequelize) 
+npm install sequelize --save
+
+Installer mariadb
+npm install mariadb --save
