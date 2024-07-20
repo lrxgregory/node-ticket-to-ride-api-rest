@@ -28,6 +28,12 @@ module.exports = (sequelize, DataTypes) => {
     },{
         defaultScope: {
             attributes: { exclude: ['id', 'createdAt', 'updatedAt'] } // Exclude these attributes by default
-        }
+        },
+        indexes: [
+            {
+                unique: true,
+                fields: ['start', 'end']
+            }
+        ]
     });
 }
