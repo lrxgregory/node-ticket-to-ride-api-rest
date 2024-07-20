@@ -1,4 +1,4 @@
-const destinationsScoringTicketToRideEurope = [
+const roadsScoringTicketToRideEurope = [
     {
         start: 'Edinburch',
         end: 'London',
@@ -633,4 +633,4 @@ const destinationsScoringTicketToRideEurope = [
     }
 ];
 
-module.exports = destinationsScoringTicketToRideEurope;
+module.exports = roadsScoringTicketToRideEurope;
