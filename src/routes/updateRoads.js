@@ -1,15 +1,15 @@
-const { RoadEurope } = require('../db/sequelize')
+const { RoadModel } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
     app.put('/api/roads/:id', auth, (req, res) => {
         const id = req.params.id
-        RoadEurope.update(req.body, {
+        RoadModel.update(req.body, {
             where: { id: id }
         })
             .then(_ => {
-                return RoadEurope.findByPk(id).then(road => {
+                return RoadModel.findByPk(id).then(road => {
                     if (road === null) {
                         const message = `The road request doesn't exist. Retry with an other id.`
                         return res.status(404).json({ message })

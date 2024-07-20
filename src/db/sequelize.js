@@ -1,11 +1,13 @@
 require('dotenv').config();
 
 const { Sequelize, DataTypes } = require('sequelize');
-const DestinationEuropeModel = require('../models/destinationsEurope');
-const RoadEuropeModel = require('../models/roadsEurope');
+const DestinationModel = require('../models/destinations');
+const RoadModel = require('../models/roads');
 const UserModel = require('../models/user');
 const destinationsEurope = require('./mock-ticket-to-ride-europe-destinations');
 const roadsEurope = require('./mock-ticket-to-ride-europe-roads');
+const destinationsUSA = require('./mock-ticket-to-ride-usa-destinations');
+const roadsUSA = require('./mock-ticket-to-ride-usa-roads');
 const bcrypt = require('bcrypt');
 
 // Configurer Sequelize avec les variables d'environnement
@@ -23,14 +25,14 @@ const sequelize = new Sequelize(
     }
 );
 
-const DestinationEurope = DestinationEuropeModel(sequelize, DataTypes);
-const RoadEurope = RoadEuropeModel(sequelize, DataTypes);
+const Destination = DestinationModel(sequelize, DataTypes);
+const Road = RoadModel(sequelize, DataTypes);
 const User = UserModel(sequelize, DataTypes);
 
 const initDb = () => {
     return sequelize.sync({ force: true }).then(_ => {
         destinationsEurope.map(destination => {
-            DestinationEurope.create({
+            Destination.create({
                 start: destination.start,
                 end: destination.end,
                 score: destination.score,
@@ -38,10 +40,10 @@ const initDb = () => {
                 map: destination.map
             }).then(destination => console.log(destination.toJSON()));
         });
-        console.log('Destinations insérées avec succès !');
+        console.log('Destinations Europe has been created !');
 
         roadsEurope.map(road => {
-            RoadEurope.create({
+            Road.create({
                 start: road.start,
                 end: road.end,
                 score: road.score,
@@ -50,7 +52,30 @@ const initDb = () => {
                 map: road.map
             }).then(road => console.log(road.toJSON()));
         });
-        console.log('Routes insérées avec succès !');
+        console.log('Roads Europe has been created !');
+
+        destinationsUSA.map(destination => {
+            Destination.create({
+                start: destination.start,
+                end: destination.end,
+                score: destination.score,
+                isLongDestination: destination.isLongDestination || false,
+                map: destination.map
+            }).then(destination => console.log(destination.toJSON()));
+        });
+        console.log('Destinations USA has been created !');
+
+        roadsUSA.map(road => {
+            Road.create({
+                start: road.start,
+                end: road.end,
+                score: road.score,
+                wagonNumber: road.wagonNumber,
+                locomotive: road.locomotive,
+                map: road.map
+            }).then(road => console.log(road.toJSON()));
+        });
+        console.log('Roads USA has been created !');
 
         bcrypt.hash(process.env.ADMIN_PASSWORD, 10)
         // Get password hashed        
@@ -60,10 +85,10 @@ const initDb = () => {
         })
         .then(user => console.log(user.toJSON())));
 
-        console.log('La base de données a bien été initialisée !');
+        console.log('Database initialized !');
     });
 };
 
 module.exports = {
-    initDb, DestinationEurope, RoadEurope, User
+    initDb, Destination, Road, User
 };

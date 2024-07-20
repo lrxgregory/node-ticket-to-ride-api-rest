@@ -1,10 +1,10 @@
-const { DestinationEurope } = require('../db/sequelize')
+const { Destination } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
     app.post('/api/destinations', auth, (req, res) => {
-        DestinationEurope.create(req.body)
+        Destination.create(req.body)
             .then(destination => {
                 const message = `The destination ${req.body.name} has been created.`
                 res.json({ message, data: destination })

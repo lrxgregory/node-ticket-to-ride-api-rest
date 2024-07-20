@@ -1,15 +1,15 @@
-const { DestinationEurope } = require('../db/sequelize');
+const { Destination } = require('../db/sequelize');
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
     app.delete('/api/destinations/:id',auth, (req, res) => {
-        DestinationEurope.scope(null).findByPk(req.params.id)
+        Destination.scope(null).findByPk(req.params.id)
         .then(destination => {
             if (destination === null) {
                 const message = 'The requested destination does not exist. Please try again with another ID.';
                 return res.status(404).json({ message });
             }
-            return DestinationEurope.destroy({
+            return Destination.destroy({
                 where: { id: destination.id }
             })
             .then(rowsDeleted => {

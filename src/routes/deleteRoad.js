@@ -1,15 +1,15 @@
-const { RoadEurope } = require('../db/sequelize');
+const { RoadModel } = require('../db/sequelize');
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
     app.delete('/api/roads/:id', auth, (req, res) => {
-        RoadEurope.scope(null).findByPk(req.params.id)
+        RoadModel.scope(null).findByPk(req.params.id)
         .then(road => {
             if (road === null) {
                 const message = 'The requested road does not exist. Please try again with another ID.';
                 return res.status(404).json({ message });
             }
-            return RoadEurope.destroy({
+            return RoadModel.destroy({
                 where: { id: road.id }
             })
             .then(rowsDeleted => {

@@ -1,15 +1,15 @@
-const { DestinationEurope } = require('../db/sequelize')
+const { Destination } = require('../db/sequelize')
 const { ValidationError, UniqueConstraintError } = require('sequelize')
 const auth = require('../auth/auth')
 
 module.exports = (app) => {
     app.put('/api/destinations/:id', auth, (req, res) => {
         const id = req.params.id
-        DestinationEurope.update(req.body, {
+        Destination.update(req.body, {
             where: { id: id }
         })
             .then(_ => {
-                return DestinationEurope.findByPk(id).then(destination => {
+                return Destination.findByPk(id).then(destination => {
                     if (destination === null) {
                         const message = `The destination request doesn't exist. Retry with an other id.`
                         return res.status(404).json({ message })

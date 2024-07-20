@@ -1,6 +1,6 @@
 // File: routes/destinations.js
 
-const { DestinationEurope } = require('../db/sequelize');
+const { Destination } = require('../db/sequelize');
 const { Op } = require('sequelize');
 
 module.exports = (app) => {
@@ -31,7 +31,7 @@ module.exports = (app) => {
 
         if (map) {
             try {
-                const mapExists = await DestinationEurope.findOne({ where: { map } });
+                const mapExists = await Destination.findOne({ where: { map } });
                 if (!mapExists) {
                     const message = `The specified 'map' value does not exist.`;
                     return res.status(400).json({ message });
@@ -52,7 +52,7 @@ module.exports = (app) => {
         }
 
         try {
-            const destinations = await DestinationEurope.findAndCountAll({
+            const destinations = await Destination.findAndCountAll({
                 where: whereClause,
                 order: [['id', 'ASC']], // Sort by 'id'
                 limit: limit ? parseInt(limit) : undefined
