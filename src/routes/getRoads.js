@@ -1,4 +1,4 @@
-const { RoadModel } = require('../db/sequelize');
+const { Road } = require('../db/sequelize');
 const { Op } = require('sequelize');
 
 module.exports = (app) => {
@@ -42,7 +42,7 @@ module.exports = (app) => {
         }
 
         try {
-            const roads = await RoadModel.findAndCountAll({
+            const roads = await Road.findAndCountAll({
                 where: whereClause,
                 order: [['id', 'ASC']], // Sort by 'id'
                 limit: limit ? parseInt(limit) : undefined
