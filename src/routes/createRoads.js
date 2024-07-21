@@ -6,7 +6,7 @@ const auth = require('../auth/auth')
  * @swagger
  * /api/roads:
  *   post:
- *     summary: Creates a new raod
+ *     summary: Creates a new road
  *     tags: [Roads]
  *     security:
  *       - bearerAuth: []

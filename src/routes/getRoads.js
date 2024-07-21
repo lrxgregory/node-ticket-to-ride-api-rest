@@ -1,6 +1,78 @@
 const { Road } = require('../db/sequelize');
 const { Op } = require('sequelize');
 
+/**
+ * @swagger
+ * /api/roads:
+ *   get:
+ *     summary: Get all roads
+ *     tags: [Roads]
+ *     parameters:
+ *       - in: path
+ *         name: start
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: The road start
+ *       - in: path
+ *         name: end
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: The road end
+ *       - in: path
+ *         name: isLongDestination
+ *         required: false
+ *         schema:
+ *           type: boolean
+ *         description: If the road is a long road or not
+ *       - in: path
+ *         name: map
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: Choose the map of the board game (Europe, USA)
+ *       - in: path
+ *         name: limit
+ *         required: false
+ *         schema:
+ *           type: integer
+ *         description: Number of results to display
+ *     responses:
+ *       200:
+ *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 data:
+ *                   $ref: '#/components/schemas/Road'
+ *       400:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ */
 module.exports = (app) => {
     app.get('/api/roads', async (req, res) => {
         const { start, end, map, limit } = req.query;

@@ -19,7 +19,6 @@ const options = {
             schemas: {
                 Destination: {
                     type: 'object',
-                    required: ['name', 'description'],
                     properties: {
                         start: {
                             type: 'string',
