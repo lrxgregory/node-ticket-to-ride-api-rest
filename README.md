@@ -55,3 +55,6 @@ npm install dotenv --save
 
 Authentification with JWToken => install jsonwebtoken to generate token
 npm install jsonwebtoken --save
+
+Install swagger
+npm install swagger-jsdoc swagger-ui-express

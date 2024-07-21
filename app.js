@@ -3,9 +3,14 @@ const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const sequelize = require('./src/db/sequelize');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
+
+// Configure Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Middleware
 app
@@ -33,4 +38,7 @@ app.use(({ res }) => {
     res.status(400).json({ message });
 });
 
-app.listen(port, () => console.log(`Our app is started on the port ${port}`));
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log(`Swagger docs available at http://localhost:${PORT}/api-docs`);
+});
