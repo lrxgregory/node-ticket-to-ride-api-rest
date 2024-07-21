@@ -4,8 +4,8 @@
   "description": "An API REST with score of the board game Ticket To Ride",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=production node app.js", 
-    "dev": "NODE_ENV=development nodemon app.js" 
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development nodemon app.js"
   },
   "author": "Gregory Leroux",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.3.1",
+    "postgres": "^3.4.4",
     "sequelize": "^6.37.3",
     "serve-favicon": "^2.5.0",
     "swagger-jsdoc": "^6.2.8",
