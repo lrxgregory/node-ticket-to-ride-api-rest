@@ -4,12 +4,12 @@
   "description": "An API REST with score of the board game Ticket To Ride",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "NODE_ENV=production node app.js", 
+    "dev": "NODE_ENV=development nodemon app.js" 
   },
   "author": "Gregory Leroux",
   "license": "ISC",
   "devDependencies": {
-    "morgan": "^1.10.0",
     "nodemon": "^3.1.4"
   },
   "dependencies": {
