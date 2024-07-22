@@ -4,27 +4,9 @@ const bodyParser = require('body-parser');
 const sequelize = require('./src/db/sequelize');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
-const cache = require('./cache');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// Middleware for cache
-function cacheMiddleware(req, res, next) {
-    const key = req.originalUrl || req.url;
-    const cachedResponse = cache.get(key);
-  
-    if (cachedResponse) {
-      return res.send(cachedResponse);
-    } else {
-      res.sendResponse = res.send;
-      res.send = (body) => {
-        cache.set(key, body);
-        res.sendResponse(body);
-      };
-      next();
-    }
-  }
 
 // Configure Swagger UI
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -39,15 +21,15 @@ app
 sequelize.initDb();
 
 //Routes
-app.use('/destinations', cacheMiddleware, require('./src/routes/createDestination'));
-app.use('/roads', cacheMiddleware, require('./src/routes/createRoads'));
-app.use('/destinations', cacheMiddleware, require('./src/routes/getDestinations'));
-app.use('/roads', cacheMiddleware, require('./src/routes/getRoads'));
-app.use('/destinations', cacheMiddleware, require('./src/routes/updateDestinations'));
-app.use('/roads', cacheMiddleware, require('./src/routes/updateRoads'));
-app.use('/destinations', cacheMiddleware, require('./src/routes/deleteDestination'));
-app.use('/roads', cacheMiddleware, require('./src/routes/deleteRoad'));
-app.use('/login', require('./src/routes/login'));
+require('./src/routes/createDestination')(app);
+require('./src/routes/createRoads')(app);
+require('./src/routes/getDestinations')(app);
+require('./src/routes/getRoads')(app);
+require('./src/routes/updateDestinations')(app);
+require('./src/routes/updateRoads')(app);
+require('./src/routes/deleteDestination')(app);
+require('./src/routes/deleteRoad')(app);
+require('./src/routes/login')(app);
 
 app.use(({ res }) => {
     const message = "Unable to find requested resource";
