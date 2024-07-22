@@ -58,3 +58,6 @@ npm install jsonwebtoken --save
 
 Install swagger
 npm install swagger-jsdoc swagger-ui-express
+
+Install cache
+npm install apicache

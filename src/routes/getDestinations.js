@@ -2,6 +2,8 @@
 
 const { Destination } = require('../db/sequelize');
 const { Op } = require('sequelize');
+const apicache = require('apicache');
+const cache = apicache.middleware;
 
 /**
  * @swagger
@@ -76,7 +78,7 @@ const { Op } = require('sequelize');
  *                   type: object
  */
 module.exports = (app) => {
-    app.get('/api/destinations', async (req, res) => {
+    app.get('/api/destinations', cache('24 hours'), async (req, res) => {
         const { start, end, map, isLongDestination, limit } = req.query;
 
         // Construct the where clause dynamically
