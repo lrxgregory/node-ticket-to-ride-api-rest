@@ -61,3 +61,6 @@ npm install swagger-jsdoc swagger-ui-express
 
 Install cache
 npm install apicache
+
+Install CORS
+npm install cors --save

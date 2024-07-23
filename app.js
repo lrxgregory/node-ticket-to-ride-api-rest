@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const sequelize = require('./src/db/sequelize');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,8 +15,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Middleware
 app
     .use(favicon(__dirname + '/favicon.ico'))
-    .use(bodyParser.json()
-    );
+    .use(bodyParser.json())
+    .use(cors());
 
 //Init Database
 sequelize.initDb();
