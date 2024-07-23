@@ -103,7 +103,7 @@ module.exports = (app) => {
 
         if (map) {
             try {
-                const mapExists = await RoadModel.findOne({ where: { map } });
+                const mapExists = await Road.findOne({ where: { map } });
                 if (!mapExists) {
                     const message = `The specified 'map' value does not exist.`;
                     return res.status(400).json({ message });
